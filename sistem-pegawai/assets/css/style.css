@@ -1,0 +1,816 @@
+/**
+ * ============================================================
+ * CUSTOM CSS - Sistem Manajemen Data Pegawai
+ * ============================================================
+ * 
+ * File ini berisi custom styling untuk melengkapi Bootstrap:
+ * - Variabel warna custom
+ * - Styling navbar dan sidebar
+ * - Card dan component styling
+ * - Table styling
+ * - Form styling
+ * - Animation & transitions
+ * - Responsive adjustments
+ * 
+ * @author      Developer
+ * @version     1.0.0
+ */
+
+/* ============================================================
+   CSS VARIABLES (Custom Properties)
+   Mendefinisikan variabel warna dan ukuran yang bisa digunakan ulang
+   ============================================================ */
+:root {
+    /* Warna Utama */
+    --primary-color: #4361ee;
+    --primary-dark: #3a56d4;
+    --primary-light: #6b8cff;
+    
+    /* Warna Sekunder */
+    --secondary-color: #7209b7;
+    --success-color: #06d6a0;
+    --warning-color: #ffd166;
+    --danger-color: #ef476f;
+    --info-color: #118ab2;
+    
+    /* Warna Netral */
+    --gray-50: #f8f9fa;
+    --gray-100: #f1f3f5;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #868e96;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    
+    /* Shadow */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+    
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    
+    /* Transisi */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+}
+
+/* ============================================================
+   BASE STYLES & RESET
+   ============================================================ */
+
+/* Font default untuk seluruh aplikasi */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--gray-800);
+    background-color: var(--gray-50);
+}
+
+/* Smooth scrolling untuk anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Link styling */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* ============================================================
+   NAVBAR CUSTOMIZATION
+   ============================================================ */
+
+/* Navbar utama dengan warna gradient */
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+    box-shadow: var(--shadow-md);
+    z-index: 1030;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    font-size: 1.1rem;
+}
+
+.navbar-brand i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Nav link styling */
+.navbar .nav-link {
+    font-weight: 500;
+    padding: 0.75rem 1rem !important;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    margin: 0 0.125rem;
+}
+
+.navbar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.navbar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white !important;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    border: none;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-md);
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.dropdown-item {
+    padding: 0.75rem 1.25rem;
+    transition: all var(--transition-fast);
+}
+
+.dropdown-item:hover {
+    background-color: var(--gray-100);
+    padding-left: 1.5rem;
+}
+
+/* ============================================================
+   MAIN CONTENT AREA
+   ============================================================ */
+
+.main-content {
+    min-height: calc(100vh - 76px - 80px); /* Navbar height + Footer height */
+    padding-bottom: 2rem;
+}
+
+/* ============================================================
+   CARD COMPONENT STYLING
+   Custom card styles untuk dashboard dan form
+   ============================================================ */
+
+.card {
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 2px solid var(--gray-100);
+    font-weight: 600;
+    padding: 1rem 1.25rem;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* Card khusus untuk statistik dashboard */
+.stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.stat-card .stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gray-800);
+}
+
+.stat-card .stat-label {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* Warna ikon untuk setiap stat card */
+.stat-card.primary .stat-icon { background-color: rgba(67, 97, 238, 0.1); color: var(--primary-color); }
+.stat-card.success .stat-icon { background-color: rgba(6, 214, 160, 0.1); color: var(--success-color); }
+.stat-card.warning .stat-icon { background-color: rgba(255, 209, 102, 0.1); color: #e6a800; }
+.stat-card.danger .stat-icon { background-color: rgba(239, 71, 111, 0.1); color: var(--danger-color); }
+.stat-card.info .stat-icon { background-color: rgba(17, 138, 178, 0.1); color: var(--info-color); }
+
+/* ============================================================
+   TABLE STYLING
+   Tampilan tabel data pegawai yang modern dan responsif
+   ============================================================ */
+
+.table-container {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow-x: auto;
+}
+
+.table {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.table thead th {
+    background-color: var(--gray-50);
+    border-bottom: 2px solid var(--gray-200);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    color: var(--gray-600);
+    padding: 1rem;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(67, 97, 238, 0.03);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Badge styling dalam tabel */
+.badge {
+    font-weight: 500;
+    padding: 0.4em 0.85em;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+}
+
+.badge-laki { background-color: rgba(17, 138, 178, 0.1); color: var(--info-color); }
+.badge-perempuan { background-color: rgba(239, 71, 111, 0.1); color: var(--danger-color); }
+.badge-aktif { background-color: rgba(6, 214, 160, 0.1); color: #04996f; }
+.badge-cuti { background-color: rgba(255, 209, 102, 0.2); color: #b38600; }
+
+/* Avatar/nama styling di tabel */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.user-avatar.bg-primary-light { background-color: rgba(67, 97, 238, 0.1); color: var(--primary-color); }
+.user-avatar.bg-success-light { background-color: rgba(6, 214, 160, 0.1); color: var(--success-color); }
+
+.user-name {
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.user-detail {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+}
+
+/* Action buttons dalam tabel */
+.action-btns .btn {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.8rem;
+    border-radius: var(--radius-sm);
+    margin: 0 0.125rem;
+}
+
+/* ============================================================
+   FORM STYLING
+   Form input yang modern dan user-friendly
+   ============================================================ */
+
+.form-control,
+.form-select {
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-text {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+}
+
+/* Input group styling */
+.input-group-text {
+    background-color: var(--gray-100);
+    border: 2px solid var(--gray-200);
+    border-right: none;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+.input-group .form-control {
+    border-left: none;
+}
+
+.input-group .form-control:focus {
+    border-left: 2px solid var(--primary-color);
+}
+
+/* ============================================================
+   BUTTON STYLING
+   Tombol aksi dengan variasi style
+   ============================================================ */
+
+.btn {
+    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: var(--gray-900);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Tombol dengan icon */
+.btn i {
+    margin-right: 0.375rem;
+}
+
+/* ============================================================
+   CHART CONTAINER
+   Container untuk grafik Chart.js
+   ============================================================ */
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.chart-container canvas {
+    max-height: 300px;
+}
+
+.chart-wrapper {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.chart-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.chart-title i {
+    color: var(--primary-color);
+}
+
+/* ============================================================
+   FLASH MESSAGE / ALERT STYLING
+   Notifikasi sukses/error/warning
+   ============================================================ */
+
+.flash-message {
+    border: none;
+    border-radius: var(--radius-md);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-success {
+    background-color: rgba(6, 214, 160, 0.1);
+    color: #04996f;
+    border-left: 4px solid var(--success-color);
+}
+
+.alert-danger,
+.alert-error {
+    background-color: rgba(239, 71, 111, 0.1);
+    color: #c0395b;
+    border-left: 4px solid var(--danger-color);
+}
+
+.alert-warning {
+    background-color: rgba(255, 209, 102, 0.15);
+    color: #b38600;
+    border-left: 4px solid var(--warning-color);
+}
+
+.alert-info {
+    background-color: rgba(17, 138, 178, 0.1);
+    color: #0c7a99;
+    border-left: 4px solid var(--info-color);
+}
+
+/* ============================================================
+   MODAL STYLING
+   Modal dialog untuk form tambah/edit
+   ============================================================ */
+
+.modal-content {
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+}
+
+.modal-header {
+    border-bottom: 2px solid var(--gray-100);
+    padding: 1.25rem 1.5rem;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: var(--gray-800);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-top: 2px solid var(--gray-100);
+    padding: 1rem 1.5rem;
+    background-color: var(--gray-50);
+}
+
+/* ============================================================
+   PAGE HEADER / TITLE SECTION
+   Judul halaman dengan breadcrumb atau deskripsi
+   ============================================================ */
+
+.page-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.page-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 0.25rem;
+}
+
+.page-subtitle {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Breadcrumb custom */
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+}
+
+.breadcrumb-item.active {
+    color: var(--gray-600);
+}
+
+/* ============================================================
+   SEARCH BAR & FILTERS
+   ============================================================ */
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar .form-control {
+    padding-left: 2.75rem;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-400);
+    z-index: 10;
+}
+
+.filter-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* ============================================================
+   EMPTY STATE
+   Tampilan ketika tidak ada data
+   ============================================================ */
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    color: var(--gray-500);
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: var(--gray-300);
+    margin-bottom: 1rem;
+}
+
+.empty-state h5 {
+    color: var(--gray-600);
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   LOADING STATE
+   ============================================================ */
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* ============================================================
+   FOOTER STYLING
+   ============================================================ */
+
+.footer {
+    margin-top: auto;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   Penyesuaian untuk berbagai ukuran layar
+   ============================================================ */
+
+/* Tablet (max-width: 992px) */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: white;
+        border-radius: var(--radius-md);
+        padding: 1rem;
+        margin-top: 0.5rem;
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .navbar .nav-link {
+        color: var(--gray-700) !important;
+        border-radius: var(--radius-sm);
+    }
+    
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+        background-color: rgba(67, 97, 238, 0.1);
+        color: var(--primary-color) !important;
+    }
+    
+    .dropdown-menu {
+        box-shadow: var(--shadow-md);
+    }
+    
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
+    .chart-container {
+        height: 250px;
+    }
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 575.98px) {
+    body {
+        font-size: 0.9rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .table {
+        font-size: 0.85rem;
+    }
+    
+    .table thead th,
+    .table tbody td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .action-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .action-btns .btn {
+        width: 100%;
+    }
+    
+    .filter-group {
+        flex-direction: column;
+    }
+    
+    .filter-group .form-select,
+    .filter-group .form-control {
+        width: 100%;
+    }
+    
+    .btn-group-responsive {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn-group-responsive .btn {
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-card .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   Class bantu untuk styling cepat
+   ============================================================ */
+
+.text-primary-custom { color: var(--primary-color) !important; }
+.text-secondary-custom { color: var(--secondary-color) !important; }
+.bg-primary-light { background-color: rgba(67, 97, 238, 0.05) !important; }
+.border-primary-custom { border-color: var(--primary-color) !important; }
+
+.cursor-pointer { cursor: pointer; }
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .footer,
+    .btn,
+    .action-btns {
+        display: none !important;
+    }
+    
+    .main-content {
+        padding-top: 0 !important;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid var(--gray-300);
+    }
+}
